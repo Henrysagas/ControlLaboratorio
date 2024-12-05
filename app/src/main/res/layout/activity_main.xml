@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- Header with Logo and Text -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="#d20037"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="342dp"
+            android:layout_height="74dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-thin"
+            android:gravity="center"
+            android:text="Dirección de Escuela de Ingeniería de Sistemas e Informatica"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="214dp"
+            android:layout_height="191dp"
+             />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Correo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.184"
+        app:layout_constraintVertical_bias="0.52"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="281dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginBottom="80dp"
+         />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contraseña"
+        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteY="473dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintVertical_bias="0.67"/>
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="271dp"
+        android:layout_height="41dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.734" />
+
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.Material3.Button"
+        android:layout_width="264dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#d20037"
+        android:text="Ingresar"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.872" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
