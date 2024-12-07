@@ -50,14 +50,14 @@
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/textView19"
+                    android:id="@+id/Nombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dp"
                     android:text="Nombre:" />
 
                 <TextView
-                    android:id="@+id/textView21"
+                    android:id="@+id/Correo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
@@ -65,12 +65,18 @@
                     android:text="Correo" />
 
                 <TextView
-                    android:id="@+id/textView23"
+                    android:id="@+id/Rol"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="3dp"
                     android:text="Rol:" />
+
+                <TextView
+                    android:id="@+id/TarjetaID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Num. de Tarjeta:" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
