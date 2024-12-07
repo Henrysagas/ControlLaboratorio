@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="342dp"
             android:layout_height="60dp"
-            android:fontFamily="sans-serif-thin"
+            android:fontFamily="serif"
             android:gravity="center"
             android:text="Control de Acceso para Laboratorios"
             android:textColor="@android:color/white"
@@ -38,24 +38,12 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Correo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.184"
-        app:layout_constraintVertical_bias="0.52"/>
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email_input_layout"
         android:layout_width="265dp"
         android:layout_height="55dp"
         android:layout_marginTop="100dp"
-        android:hint="Email"
+        android:hint="Correo"
         android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -69,20 +57,6 @@
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Contraseña"
-        tools:layout_editor_absoluteX="72dp"
-        tools:layout_editor_absoluteY="473dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintVertical_bias="0.67"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password_input_layout"
@@ -105,7 +79,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-        style="@style/Theme.ControlLaboratorio"
+        style="@style/CustomButtonStyle"
         android:layout_width="264dp"
         android:layout_height="40dp"
         android:text="Ingresar"
