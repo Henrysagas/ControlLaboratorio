@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "346789952963",
+    "project_id": "aulas-sistemas",
+    "storage_bucket": "aulas-sistemas.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:346789952963:android:92853a72ff16019a639176",
+        "android_client_info": {
+          "package_name": "com.example.controllaboratorio"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZHQkZuLW8FXNVlVAs7aMr5KnBs4JbMQ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
