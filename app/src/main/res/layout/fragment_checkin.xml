@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.CheckinFragment">
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="186dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginEnd="113dp"
+        android:layout_marginBottom="74dp"
+        android:text="Pasar Tarjeta"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner7"
+        android:layout_width="326dp"
+        android:layout_height="49dp"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="169dp" />
+
+    <Spinner
+        android:id="@+id/spinner8"
+        android:layout_width="326dp"
+        android:layout_height="43dp"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="264dp" />
+
+    <Spinner
+        android:id="@+id/spinner9"
+        android:layout_width="324dp"
+        android:layout_height="45dp"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="357dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Docente"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="145dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lab"
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="238dp" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Curso"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="327dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

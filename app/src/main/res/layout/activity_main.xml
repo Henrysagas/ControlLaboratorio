@@ -80,8 +80,8 @@
 
     <com.google.android.material.button.MaterialButton
         style="@style/CustomButtonStyle"
-        android:layout_width="264dp"
-        android:layout_height="40dp"
+        android:layout_width="258dp"
+        android:layout_height="53dp"
         android:text="Ingresar"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
