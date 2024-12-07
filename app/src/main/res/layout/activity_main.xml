@@ -21,8 +21,8 @@
         tools:ignore="MissingConstraints">
 
         <TextView
-            android:layout_width="342dp"
-            android:layout_height="60dp"
+            android:layout_width="340dp"
+            android:layout_height="80dp"
             android:fontFamily="serif"
             android:gravity="center"
             android:text="Control de Acceso para Laboratorios"
@@ -77,9 +77,9 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
     <com.google.android.material.button.MaterialButton
         style="@style/CustomButtonStyle"
+        android:id="@+id/LoginButtom"
         android:layout_width="258dp"
         android:layout_height="53dp"
         android:text="Ingresar"
@@ -90,6 +90,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.872" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
