@@ -129,15 +129,22 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"/>
 
-            <EditText
-                android:id="@+id/editTextTime"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/time_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="10dp"
-                android:ems="10"
-                android:inputType="time" />
+                android:hint="Seleccionar Hora de Entrada">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/time_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:clickable="true" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/textView30"
@@ -147,15 +154,22 @@
                 android:layout_marginStart="10dp"
                 android:text="Hora Salida" />
 
-            <EditText
-                android:id="@+id/editTextTime2"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/time_input_salida"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:ems="10"
-                android:inputType="time" />
+                android:layout_marginTop="10dp"
+                android:hint="Seleccionar Hora de Salida">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/time_edit_text_salida"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:clickable="true" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
