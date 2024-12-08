@@ -51,10 +51,10 @@ class LabFragment : Fragment() {
                     val nombre = document.getString("Nombre") ?: ""
                     val correo = document.getString("Correo")
                     val rol = document.getString("Rol")
-                    val numTarjeta = document.getString("NumTarjeta")
+                    val numTarjeta = document.getLong("NumTarjeta")
 
                     // Solo añadir usuarios con NumTarjeta no nulo y no vacío
-                    if (!numTarjeta.isNullOrEmpty()) {
+                    if (numTarjeta != null) {
                         listaUsuarios.add(Usuario(nombre, correo, rol, numTarjeta))
                     }
                 }

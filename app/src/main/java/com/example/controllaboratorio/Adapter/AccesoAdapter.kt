@@ -35,7 +35,7 @@ class AccesoAdapter (private val listaAccesos: List<Acceso>,
         holder.asignacionDocenteCurso.text =
             (acceso.asignacion?.Docente?.Nombre + " - " + acceso.asignacion?.Curso?.nombreCurso)
                 ?: "Sin asignar"
-        holder.asignacionLaboratorio.text = acceso.asignacion?.Laboratorio?.nombrelab ?: "Sin asignar"
+        holder.asignacionLaboratorio.text = acceso.asignacion?.Laboratorio?.nombreLab ?: "Sin asignar"
         holder.fecha.text = acceso.fecha?.toString() ?: "Sin fecha"
         holder.horaEntrada.text = acceso.horaEntrada?.toString() ?: " "
         holder.horaSalida.text = acceso.horaSalida?.toString() ?: " "

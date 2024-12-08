@@ -35,7 +35,7 @@ class UsuarioAdapter (
         holder.nombre.text = usuario.Nombre?.let { "Nombre: $it" } ?: ""
         holder.correo.text = usuario.Correo?.let { "Correo: $it" } ?: ""
         holder.rol.text = usuario.Rol?.let { "Rol: $it" } ?: ""
-        holder.numTarjeta.text = usuario.NumTarjeta?.takeIf { it.isNotBlank() }?.let { "Número de Tarjeta: $it" } ?: ""
+        holder.numTarjeta.text = usuario.NumTarjeta?.toString()?.takeIf { it.isNotBlank() }?.let { "Número de Tarjeta: $it" } ?: ""
         // Maneja clics en el elemento
         holder.itemView.setOnClickListener { onItemClick(usuario) }
     }

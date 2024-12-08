@@ -16,7 +16,7 @@ class AsignacionAdapter (private val listaAsignaciones: List<Asignacion>,
     class AsignacionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val laboratorio: TextView = itemView.findViewById(R.id.LabA)
         val curso: TextView = itemView.findViewById(R.id.CursoA)
-        val dia: TextView = itemView.findViewById(R.id.dia)
+        val dia: TextView = itemView.findViewById(R.id.DiaA)
         val horaES: TextView = itemView.findViewById(R.id.HoraES)
     }
 
@@ -29,7 +29,7 @@ class AsignacionAdapter (private val listaAsignaciones: List<Asignacion>,
     override fun onBindViewHolder(holder: AsignacionViewHolder, position: Int) {
         // Vincula los datos con las vistas
         val asignacion = listaAsignaciones[position]
-        holder.laboratorio.text = asignacion.Laboratorio?.nombrelab
+        holder.laboratorio.text = asignacion.Laboratorio?.nombreLab
         holder.curso.text = asignacion.Curso?.nombreCurso
         holder.dia.text = asignacion.Dia
         holder.horaES.text = asignacion.horaEntrada.toString() + " - " +  asignacion.horaSalida.toString()

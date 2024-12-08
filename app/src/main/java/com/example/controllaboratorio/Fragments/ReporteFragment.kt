@@ -11,7 +11,6 @@ import com.example.controllaboratorio.Adapter.AccesoAdapter
 import com.example.controllaboratorio.Models.Acceso
 
 import com.example.controllaboratorio.R
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 /**
@@ -53,7 +52,7 @@ class ReporteFragment : Fragment() {
         firestore.collection("accesos")
             .get()
             .addOnSuccessListener { result ->
-                listaAccesos = if (rol == "Administrador") {
+                listaAccesos = if (rol == "administrador") {
                     // Si es Administrador, se muestran todos los accesos
                     result.map { it.toObject(Acceso::class.java) }
                 } else {

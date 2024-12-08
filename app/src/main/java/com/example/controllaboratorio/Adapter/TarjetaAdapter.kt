@@ -26,7 +26,7 @@ class TarjetaAdapter (private val listaUsuarios: List<Usuario>) : RecyclerView.A
         // Vincula los datos con las vistas
         val usuario = listaUsuarios[position]
         holder.nombre.text = usuario.Nombre
-        holder.numTarjeta.text = usuario.NumTarjeta
+        holder.numTarjeta.text = usuario.NumTarjeta?.toString() ?: "Sin número"
     }
 
     override fun getItemCount(): Int {

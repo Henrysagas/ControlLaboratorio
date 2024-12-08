@@ -1,11 +1,15 @@
 package com.example.controllaboratorio.Models
 
 class Laboratorio {
-    var nombrelab: String? = null
+    var nombreLab: String? = null
     var aforo: Int? = 0
+
+    constructor() {
+        // Dejar vacío o inicializar con valores predeterminados si es necesario
+    }
 
     constructor(aforo: Int?, nombrelab: String?) {
         this.aforo = aforo
-        this.nombrelab = nombrelab
+        this.nombreLab = nombrelab
     }
 }

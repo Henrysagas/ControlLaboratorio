@@ -7,16 +7,20 @@ class Asignacion {
     var Laboratorio: Laboratorio? = null
     var Curso: Curso? = null
     var Dia: String? = null
-    var horaEntrada: LocalTime? = null
-    var horaSalida: LocalTime? = null
+    var horaEntrada: String? = null
+    var horaSalida: String? = null
+
+    constructor() {
+        // Dejar vacío o inicializar con valores predeterminados si es necesario
+    }
 
     constructor(
         Docente: Usuario?,
         Laboratorio: Laboratorio?,
         Curso: Curso?,
         Dia: String?,
-        horaEntrada: LocalTime?,
-        horaSalida: LocalTime?
+        horaEntrada: String?,
+        horaSalida: String?
     ) {
         this.Docente = Docente
         this.Laboratorio = Laboratorio

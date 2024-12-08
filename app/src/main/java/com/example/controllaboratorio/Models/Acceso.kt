@@ -11,6 +11,10 @@ class Acceso {
     var horaSalida: LocalTime? = null
     var Estado: String? = null
 
+    constructor() {
+        // Dejar vacío o inicializar con valores predeterminados si es necesario
+    }
+
     constructor(
         asignacion: Asignacion?,
         fecha: LocalDate?,

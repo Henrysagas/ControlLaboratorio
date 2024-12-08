@@ -1,15 +1,19 @@
 package com.example.controllaboratorio.Fragments
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.controllaboratorio.Activities.MainActivity
+import com.example.controllaboratorio.Models.Usuario
 
 import com.example.controllaboratorio.R
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 /**
@@ -37,9 +41,15 @@ class PerfilFragment : Fragment() {
         correoTextView = view.findViewById(R.id.Correo)
         rolTextView = view.findViewById(R.id.Rol)
         tarjetaTextView = view.findViewById(R.id.TarjetaID)
+        val cerrarSesionButton = view.findViewById<Button>(R.id.button3)
 
-        // ID del usuario (puedes cambiar esto según cómo obtengas el ID del usuario en tu aplicación)
-        val userId = "ID_DEL_USUARIO" // Reemplaza con el ID correspondiente
+        val sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val userId = sharedPreferences.getString("userId", null)
+
+        if (userId == null) {
+            Toast.makeText(requireContext(), "Error: Sesión no encontrada", Toast.LENGTH_SHORT).show()
+            return view
+        }
 
         // Obtener los datos del usuario desde Firestore
         firestore.collection("usuarios").document(userId)
@@ -50,13 +60,15 @@ class PerfilFragment : Fragment() {
                     val nombre = document.getString("nombre")
                     val correo = document.getString("correo")
                     val rol = document.getString("rol")
-                    val numTarjeta = document.getString("numTarjeta")
-
+                    val numTarjeta = document.getLong("Numtarjeta")
+                    val usuario = Usuario(nombre, correo, rol, numTarjeta)
                     // Mostrar los datos en las vistas
-                    nombreTextView.text = "Nombre: ${nombre ?: "No disponible"}"
-                    correoTextView.text = "Correo: ${correo ?: "No disponible"}"
-                    rolTextView.text = "Rol: ${rol ?: "No disponible"}"
-                    tarjetaTextView.text = "Número de Tarjeta: ${numTarjeta ?: "No disponible"}"
+                    nombreTextView.text = "Nombre: ${usuario.Nombre ?: "No disponible"}"
+                    correoTextView.text = "Correo: ${usuario.Correo ?: "No disponible"}"
+                    rolTextView.text = "Rol: ${usuario.Rol ?: "No disponible"}"
+                    tarjetaTextView.text = "Número de Tarjeta: ${usuario.NumTarjeta ?: "No disponible"}"
+                } else {
+                    nombreTextView.text = "Usuario no encontrado"
                 }
             }
             .addOnFailureListener { exception ->
@@ -64,6 +76,22 @@ class PerfilFragment : Fragment() {
                 Toast.makeText(requireContext(), "Error al obtener datos: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
 
+        cerrarSesionButton.setOnClickListener{
+            cerrarSesion()
+        }
+
         return view
     }
+
+    private fun cerrarSesion() {
+        val sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", 0)
+        sharedPreferences.edit().clear().apply()
+
+        val intent = Intent(activity, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+
+        requireActivity().finish()
+    }
+
 }
