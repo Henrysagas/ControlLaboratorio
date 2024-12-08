@@ -35,8 +35,7 @@
                 <TextView
                     android:id="@+id/textView26"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Laboratorios Registrados" />
+                    android:layout_height="wrap_content" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/HorarioList"
