@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 
 import com.example.controllaboratorio.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 /**
  * A simple [Fragment] subclass.
@@ -14,37 +17,56 @@ import com.example.controllaboratorio.R
  * create an instance of this fragment.
  */
 class PerfilFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private lateinit var nombreTextView: TextView
+    private lateinit var correoTextView: TextView
+    private lateinit var rolTextView: TextView
+    private lateinit var tarjetaTextView: TextView
 
-    }
+    private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_perfil, container, false)
-    }
+        val view = inflater.inflate(R.layout.fragment_perfil, container, false)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PerfilFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PerfilFragment().apply {
+        // Inicializa las vistas
+        nombreTextView = view.findViewById(R.id.Nombre)
+        correoTextView = view.findViewById(R.id.Correo)
+        rolTextView = view.findViewById(R.id.Rol)
+        tarjetaTextView = view.findViewById(R.id.TarjetaID)
 
-            }
+        // Obtén el usuario actualmente autenticado
+        val user = firebaseAuth.currentUser
+
+        // Asegúrate de que el usuario esté autenticado
+        user?.let { usuario ->
+            val userId = usuario.uid
+            // Obtener los datos del usuario desde Firestore
+            firestore.collection("usuarios").document(userId)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        // Extraer los datos del documento
+                        val nombre = document.getString("nombre")
+                        val correo = document.getString("correo")
+                        val rol = document.getString("rol")
+                        val numTarjeta = document.getString("numTarjeta")
+
+                        // Mostrar los datos en las vistas
+                        nombreTextView.text = "Nombre: ${nombre ?: "No disponible"}"
+                        correoTextView.text = "Correo: ${correo ?: "No disponible"}"
+                        rolTextView.text = "Rol: ${rol ?: "No disponible"}"
+                        tarjetaTextView.text = "Número de Tarjeta: ${numTarjeta ?: "No disponible"}"
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    // Manejar error al obtener los datos
+                }
+        }
+
+        return view
     }
 }
