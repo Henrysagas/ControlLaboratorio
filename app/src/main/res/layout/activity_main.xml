@@ -22,7 +22,7 @@
 
         <TextView
             android:layout_width="340dp"
-            android:layout_height="80dp"
+            android:layout_height="100dp"
             android:fontFamily="serif"
             android:gravity="center"
             android:text="Control de Acceso para Laboratorios"
@@ -42,7 +42,7 @@
         android:id="@+id/email_input_layout"
         android:layout_width="265dp"
         android:layout_height="55dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
         android:hint="Correo"
         android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,7 @@
         android:id="@+id/password_input_layout"
         android:layout_width="260dp"
         android:layout_height="55dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:hint="Contraseña"
         android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,17 +78,16 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        style="@style/CustomButtonStyle"
         android:id="@+id/LoginButtom"
         android:layout_width="258dp"
         android:layout_height="53dp"
+        android:layout_marginTop="600dp"
         android:text="Ingresar"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.477"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.872" />
+        style="@style/CustomButtonStyle"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
