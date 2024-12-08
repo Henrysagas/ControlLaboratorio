@@ -30,7 +30,7 @@ class AsignacionAdapter (private val listaAsignaciones: List<Asignacion>,
         // Vincula los datos con las vistas
         val asignacion = listaAsignaciones[position]
         holder.laboratorio.text = asignacion.Laboratorio?.nombreLab
-        holder.curso.text = asignacion.Curso?.nombreCurso
+        holder.curso.text = asignacion.Curso?.nombreCurso + " - " + asignacion.Curso?.grupo
         holder.dia.text = asignacion.Dia
         holder.horaES.text = asignacion.horaEntrada.toString() + " - " +  asignacion.horaSalida.toString()
 
