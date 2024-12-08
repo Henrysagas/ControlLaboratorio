@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.controllaboratorio.Fragments.AsignacionFragment
+import com.example.controllaboratorio.Fragments.LabFragment
 import com.example.controllaboratorio.Fragments.PerfilFragment
 import com.example.controllaboratorio.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -28,6 +29,7 @@ class HomeActivity : AppCompatActivity() {
         bottomNavigation.setOnItemSelectedListener{ menuItem ->
             val fragment = when (menuItem.itemId){
                 R.id.navigation_lab -> AsignacionFragment()
+                R.id.navigation_tarjeta -> LabFragment()
                 R.id.navigation_perfil -> PerfilFragment()
                 else -> null
             }

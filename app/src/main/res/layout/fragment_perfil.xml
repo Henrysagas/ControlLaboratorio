@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.PerfilFragment">
+    tools:context=".Fragments.PerfilFragment"
+    android:background="@color/gray">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -12,26 +13,28 @@
 
         <Button
             android:id="@+id/button3"
-            android:layout_width="342dp"
-            android:layout_height="57dp"
-            android:layout_marginStart="34dp"
-            android:layout_marginTop="74dp"
-            android:layout_marginEnd="35dp"
-            android:background="#d20037"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="40dp"
             android:text="Cerrar Sesion"
             android:textColor="#FFFFFF"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/PerfilCard"
-            app:rippleColor="@color/m3_button_ripple_color_selector" />
+            app:rippleColor="@color/m3_button_ripple_color_selector"
+            style="@style/CustomButtonStyle"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/PerfilCard"
-            android:layout_width="394dp"
-            android:layout_height="294dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="52dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.562"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,56 +43,67 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView17"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:text="Informacion de Usuario"
-                    android:textSize="24sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/Nombre"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="3dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="10dp"
                     android:text="Nombre:" />
 
                 <TextView
                     android:id="@+id/Correo"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginBottom="3dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="10dp"
                     android:text="Correo" />
 
                 <TextView
                     android:id="@+id/Rol"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginBottom="3dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="10dp"
                     android:text="Rol:" />
 
                 <TextView
                     android:id="@+id/TarjetaID"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginStart="10dp"
                     android:text="Num. de Tarjeta:" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/textView25"
-            android:layout_width="247dp"
-            android:layout_height="34dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="Perfil de Usuario"
             android:textColor="#d20037"
-            android:textSize="24sp"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
