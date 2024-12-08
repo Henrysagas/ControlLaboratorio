@@ -14,7 +14,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/CursoA"
                 android:layout_width="141dp"
                 android:layout_height="32dp"
                 android:layout_marginStart="16dp"
@@ -24,7 +24,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView24"
+                android:id="@+id/DiaA"
                 android:layout_width="33dp"
                 android:layout_height="26dp"
                 android:layout_marginStart="16dp"
@@ -34,7 +34,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/textView35"
+                android:id="@+id/HoraES"
                 android:layout_width="64dp"
                 android:layout_height="23dp"
                 android:layout_marginStart="44dp"
@@ -42,11 +42,11 @@
                 android:layout_marginBottom="19dp"
                 android:text="HORAS"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView24"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+                app:layout_constraintStart_toEndOf="@+id/DiaA"
+                app:layout_constraintTop_toBottomOf="@+id/CursoA" />
 
             <TextView
-                android:id="@+id/textView36"
+                android:id="@+id/LabA"
                 android:layout_width="46dp"
                 android:layout_height="26dp"
                 android:layout_marginTop="26dp"

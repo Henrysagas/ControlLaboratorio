@@ -14,7 +14,7 @@
             android:layout_height="252dp">
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/DocenteCurso"
                 android:layout_width="298dp"
                 android:layout_height="26dp"
                 android:layout_marginStart="16dp"
@@ -26,13 +26,13 @@
             <LinearLayout
                 android:layout_width="140dp"
                 android:layout_height="123dp"
-                android:layout_marginStart="108dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="7dp"
+                android:layout_marginStart="99dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="16dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/linearLayout2"
-                app:layout_constraintTop_toBottomOf="@+id/textView13">
+                app:layout_constraintTop_toBottomOf="@+id/DocenteCurso">
 
                 <TextView
                     android:id="@+id/textView16"
@@ -70,10 +70,10 @@
                 android:layout_width="140dp"
                 android:layout_height="123dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="15dp"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView13">
+                app:layout_constraintTop_toBottomOf="@+id/DocenteCurso">
 
                 <TextView
                     android:id="@+id/textView20"
@@ -107,7 +107,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView24"
+                android:id="@+id/Estado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
