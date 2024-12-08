@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.controllaboratorio.Fragments.AsignacionFragment
 import com.example.controllaboratorio.Fragments.LabFragment
 import com.example.controllaboratorio.Fragments.PerfilFragment
+import com.example.controllaboratorio.Fragments.ReporteFragment
 import com.example.controllaboratorio.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -24,12 +25,14 @@ class HomeActivity : AppCompatActivity() {
             fragmentTransaction.replace(R.id.fragment_container, inicioFragment)
             fragmentTransaction.commit()
         }
+
         //Configurar el BottomNavigation
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigation.setOnItemSelectedListener{ menuItem ->
             val fragment = when (menuItem.itemId){
                 R.id.navigation_lab -> AsignacionFragment()
                 R.id.navigation_tarjeta -> LabFragment()
+                R.id.navigation_historial -> ReporteFragment()
                 R.id.navigation_perfil -> PerfilFragment()
                 else -> null
             }

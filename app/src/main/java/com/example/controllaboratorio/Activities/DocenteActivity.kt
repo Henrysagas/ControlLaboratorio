@@ -1,47 +1,50 @@
 package com.example.controllaboratorio.Activities
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.controllaboratorio.Activities.ui.theme.ControlLaboratorioTheme
+import androidx.appcompat.app.AppCompatActivity
+import com.example.controllaboratorio.Fragments.AsignacionFragment
+import com.example.controllaboratorio.Fragments.CheckinFragment
+import com.example.controllaboratorio.R
 
-class DocenteActivity : ComponentActivity() {
+import com.example.controllaboratorio.Fragments.DocenteFragment
+import com.example.controllaboratorio.Fragments.LabFragment
+import com.example.controllaboratorio.Fragments.PerfilFragment
+import com.example.controllaboratorio.Fragments.ReporteFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
+class DocenteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_docente)
         enableEdgeToEdge()
-        setContent {
-            ControlLaboratorioTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting3(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+
+        // Reemplaza el contenedor con el fragmento
+        if (savedInstanceState == null) {
+            val fragmentTransaction = supportFragmentManager.beginTransaction()
+            val inicioFragment = DocenteFragment()
+
+            // Reemplazar el fragmento en el contenedor de FrameLayout
+            fragmentTransaction.replace(R.id.fragment_container_docente, inicioFragment)
+            fragmentTransaction.commit()
         }
-    }
-}
 
-@Composable
-fun Greeting3(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview3() {
-    ControlLaboratorioTheme {
-        Greeting3("Android")
+        //Configurar el BottomNavigation
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation_docente)
+        bottomNavigation.setOnItemSelectedListener{ menuItem ->
+            val fragment = when (menuItem.itemId){
+                R.id.navigation_horario -> DocenteFragment()
+                R.id.navigation_historial_docente -> ReporteFragment()
+                R.id.navigation_check -> CheckinFragment()
+                R.id.navigation_perfildocente -> PerfilFragment()
+                else -> null
+            }
+            fragment?.let {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container_docente, it)
+                    .commit()
+            }
+            true
+        }
     }
 }
