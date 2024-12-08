@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 import com.example.controllaboratorio.R
@@ -23,7 +24,6 @@ class PerfilFragment : Fragment() {
     private lateinit var rolTextView: TextView
     private lateinit var tarjetaTextView: TextView
 
-    private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
@@ -38,34 +38,31 @@ class PerfilFragment : Fragment() {
         rolTextView = view.findViewById(R.id.Rol)
         tarjetaTextView = view.findViewById(R.id.TarjetaID)
 
-        // Obtén el usuario actualmente autenticado
-        val user = firebaseAuth.currentUser
+        // ID del usuario (puedes cambiar esto según cómo obtengas el ID del usuario en tu aplicación)
+        val userId = "ID_DEL_USUARIO" // Reemplaza con el ID correspondiente
 
-        // Asegúrate de que el usuario esté autenticado
-        user?.let { usuario ->
-            val userId = usuario.uid
-            // Obtener los datos del usuario desde Firestore
-            firestore.collection("usuarios").document(userId)
-                .get()
-                .addOnSuccessListener { document ->
-                    if (document != null) {
-                        // Extraer los datos del documento
-                        val nombre = document.getString("nombre")
-                        val correo = document.getString("correo")
-                        val rol = document.getString("rol")
-                        val numTarjeta = document.getString("numTarjeta")
+        // Obtener los datos del usuario desde Firestore
+        firestore.collection("usuarios").document(userId)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    // Extraer los datos del documento
+                    val nombre = document.getString("nombre")
+                    val correo = document.getString("correo")
+                    val rol = document.getString("rol")
+                    val numTarjeta = document.getString("numTarjeta")
 
-                        // Mostrar los datos en las vistas
-                        nombreTextView.text = "Nombre: ${nombre ?: "No disponible"}"
-                        correoTextView.text = "Correo: ${correo ?: "No disponible"}"
-                        rolTextView.text = "Rol: ${rol ?: "No disponible"}"
-                        tarjetaTextView.text = "Número de Tarjeta: ${numTarjeta ?: "No disponible"}"
-                    }
+                    // Mostrar los datos en las vistas
+                    nombreTextView.text = "Nombre: ${nombre ?: "No disponible"}"
+                    correoTextView.text = "Correo: ${correo ?: "No disponible"}"
+                    rolTextView.text = "Rol: ${rol ?: "No disponible"}"
+                    tarjetaTextView.text = "Número de Tarjeta: ${numTarjeta ?: "No disponible"}"
                 }
-                .addOnFailureListener { exception ->
-                    // Manejar error al obtener los datos
-                }
-        }
+            }
+            .addOnFailureListener { exception ->
+                // Manejar error al obtener los datos
+                Toast.makeText(requireContext(), "Error al obtener datos: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
 
         return view
     }

@@ -24,12 +24,7 @@ class DocenteFragment : Fragment() {
     private lateinit var asignacionAdapter: AsignacionAdapter
     private var listaAsignaciones: List<Asignacion> = mutableListOf()
 
-    private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,26 +37,16 @@ class DocenteFragment : Fragment() {
         recyclerView = view.findViewById(R.id.HorarioList)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        // Obtén el usuario actualmente autenticado
-        val user = firebaseAuth.currentUser
-        user?.let { usuario ->
-            // Obtener el nombre del docente
-            val userId = usuario.uid
-            firestore.collection("usuarios").document(userId)
-                .get()
-                .addOnSuccessListener { document ->
-                    if (document != null) {
-                        val nombreDocente = document.getString("nombre")
-                        // Obtener asignaciones filtradas por nombre del docente
-                        obtenerAsignaciones(nombreDocente)
-                    }
-                }
-        }
+        // Establece el nombre del docente directamente o recíbelo como argumento
+        val nombreDocente = arguments?.getString("nombreDocente") ?: "Nombre por defecto"
+
+        // Obtener asignaciones filtradas por el nombre del docente
+        obtenerAsignaciones(nombreDocente)
 
         return view
     }
 
-    private fun obtenerAsignaciones(nombreDocente: String?) {
+    private fun obtenerAsignaciones(nombreDocente: String) {
         // Consulta las asignaciones y filtra solo las que corresponden al docente
         firestore.collection("asignaciones")
             .get()
@@ -81,9 +66,11 @@ class DocenteFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(nombreDocente: String) =
             DocenteFragment().apply {
-                // Se pueden agregar parámetros si es necesario
+                arguments = Bundle().apply {
+                    putString("nombreDocente", nombreDocente)
+                }
             }
     }
 }

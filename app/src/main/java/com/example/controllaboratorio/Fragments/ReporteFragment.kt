@@ -25,12 +25,7 @@ class ReporteFragment : Fragment() {
     private lateinit var accesoAdapter: AccesoAdapter
     private var listaAccesos: List<Acceso> = mutableListOf()
 
-    private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,27 +38,18 @@ class ReporteFragment : Fragment() {
         recyclerView = view.findViewById(R.id.HistorialLista)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        // Obtén el usuario actualmente autenticado
-        val user = firebaseAuth.currentUser
-        user?.let { usuario ->
-            // Obtener el rol del usuario
-            val userId = usuario.uid
-            firestore.collection("usuarios").document(userId)
-                .get()
-                .addOnSuccessListener { document ->
-                    if (document != null) {
-                        val rol = document.getString("rol")
-                        // Obtener accesos según el rol
-                        obtenerAccesos(rol)
-                    }
-                }
-        }
+        // Se obtiene el rol del usuario desde los argumentos
+        val rol = arguments?.getString("rol") ?: "Docente"
+        val docenteId = arguments?.getString("docenteId") ?: ""
+
+        // Obtener accesos según el rol
+        obtenerAccesos(rol, docenteId)
 
         return view
     }
 
-    private fun obtenerAccesos(rol: String?) {
-        // Dependiendo del rol, consulta los accesos
+    private fun obtenerAccesos(rol: String, docenteId: String) {
+        // Consulta los accesos dependiendo del rol
         firestore.collection("accesos")
             .get()
             .addOnSuccessListener { result ->
@@ -73,8 +59,8 @@ class ReporteFragment : Fragment() {
                 } else {
                     // Si es Docente, filtra solo los accesos del docente
                     result.filter {
-                        val docenteId = it.getString("docenteId")
-                        docenteId == firebaseAuth.currentUser?.uid
+                        val id = it.getString("docenteId")
+                        id == docenteId
                     }.map { it.toObject(Acceso::class.java) }
                 }
 
@@ -88,9 +74,12 @@ class ReporteFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(rol: String, docenteId: String) =
             ReporteFragment().apply {
-                // Se pueden agregar parámetros si es necesario
+                arguments = Bundle().apply {
+                    putString("rol", rol)
+                    putString("docenteId", docenteId)
+                }
             }
     }
 }
