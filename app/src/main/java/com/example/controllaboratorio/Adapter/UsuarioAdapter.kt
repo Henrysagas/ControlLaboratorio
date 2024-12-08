@@ -31,11 +31,11 @@ class UsuarioAdapter (
         // Vincula los datos con las vistas
         val usuario = listaUsuarios[position]
 
-        holder.nombre.text = usuario.Nombre ?: "Sin nombre"
-        holder.correo.text = usuario.Correo ?: "Sin correo"
-        holder.rol.text = usuario.Rol ?: "Sin rol"
-        holder.numTarjeta.text = usuario.NumTarjeta ?: "Sin número de tarjeta"
-
+        // Mostrar cada campo con su etiqueta solo si existe
+        holder.nombre.text = usuario.Nombre?.let { "Nombre: $it" } ?: ""
+        holder.correo.text = usuario.Correo?.let { "Correo: $it" } ?: ""
+        holder.rol.text = usuario.Rol?.let { "Rol: $it" } ?: ""
+        holder.numTarjeta.text = usuario.NumTarjeta?.takeIf { it.isNotBlank() }?.let { "Número de Tarjeta: $it" } ?: ""
         // Maneja clics en el elemento
         holder.itemView.setOnClickListener { onItemClick(usuario) }
     }

@@ -16,7 +16,7 @@
             android:layout_height="45dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Gestion de Laboratorios"
+            android:text="Tarjetas"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -41,7 +41,7 @@
                     android:id="@+id/textView28"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nombre Laboratorio" />
+                    android:text="Nombre Docente" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -50,14 +50,14 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Lab 3" />
+                        android:hint="Johan" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/textView31"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Aforo" />
+                    android:text="NumeroTarjeta" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="40" />
+                        android:hint="43413415" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -77,7 +77,7 @@
                     android:id="@+id/button5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Registrar Laboratorio" />
+                    android:text="Registrar Tarjeta" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
