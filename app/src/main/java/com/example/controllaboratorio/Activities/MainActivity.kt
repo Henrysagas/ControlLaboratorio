@@ -30,7 +30,8 @@ class MainActivity : ComponentActivity() {
                 Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             } else {
-                val intent = Intent(this, HomeActivity::class.java)
+                //val intent = Intent(this, HomeActivity::class.java)
+                val intent = Intent(this, DocenteActivity::class.java)
                 startActivity(intent)
             }
 
