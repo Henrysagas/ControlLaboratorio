@@ -117,18 +117,19 @@
                     android:id="@+id/textView26"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="10dp"
-                    android:textStyle="bold"
-                    android:text="Laboratorios Registrados" />
+                    android:layout_marginTop="10dp"
+                    android:text="Tarjetas"
+                    android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/TarjetasList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"/>
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

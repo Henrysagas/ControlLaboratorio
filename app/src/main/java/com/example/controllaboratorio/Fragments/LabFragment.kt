@@ -5,8 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.controllaboratorio.Adapter.TarjetaAdapter
+import com.example.controllaboratorio.Models.Usuario
 
 import com.example.controllaboratorio.R
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 
 /**
  * A simple [Fragment] subclass.
@@ -14,37 +20,52 @@ import com.example.controllaboratorio.R
  * create an instance of this fragment.
  */
 class LabFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var tarjetaAdapter: TarjetaAdapter
+    private val listaUsuarios: MutableList<Usuario> = mutableListOf()
+    private val db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lab, container, false)
+        val view = inflater.inflate(R.layout.fragment_lab, container, false)
+
+        // Configurar el RecyclerView
+        recyclerView = view.findViewById(R.id.TarjetasList)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+
+        // Cargar los usuarios desde Firestore
+        cargarUsuariosDesdeFirestore()
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LabFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LabFragment().apply {
+    private fun cargarUsuariosDesdeFirestore() {
+        db.collection("usuarios")
+            .get()
+            .addOnSuccessListener { result: QuerySnapshot ->
+                listaUsuarios.clear()
+                for (document in result) {
+                    val nombre = document.getString("Nombre") ?: ""
+                    val correo = document.getString("Correo")
+                    val rol = document.getString("Rol")
+                    val numTarjeta = document.getString("NumTarjeta")
 
+                    // Solo añadir usuarios con NumTarjeta no nulo y no vacío
+                    if (!numTarjeta.isNullOrEmpty()) {
+                        listaUsuarios.add(Usuario(nombre, correo, rol, numTarjeta))
+                    }
+                }
+
+                // Actualizar el RecyclerView con los usuarios filtrados
+                tarjetaAdapter = TarjetaAdapter(listaUsuarios)
+                recyclerView.adapter = tarjetaAdapter
+            }
+            .addOnFailureListener { exception ->
+                // Manejar errores
+                println("Error al obtener documentos: $exception")
             }
     }
 }
