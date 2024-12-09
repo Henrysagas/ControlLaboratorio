@@ -48,9 +48,9 @@ class LabFragment : Fragment() {
             .addOnSuccessListener { result: QuerySnapshot ->
                 listaUsuarios.clear()
                 for (document in result) {
-                    val nombre = document.getString("Nombre") ?: ""
-                    val correo = document.getString("Correo")
-                    val rol = document.getString("Rol")
+                    val nombre = document.getString("nombre") ?: ""
+                    val correo = document.getString("correo")
+                    val rol = document.getString("rol")
                     val numTarjeta = document.getLong("NumTarjeta")
 
                     // Solo añadir usuarios con NumTarjeta no nulo y no vacío

@@ -1,5 +1,7 @@
 package com.example.controllaboratorio.Fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,15 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.controllaboratorio.Adapter.AccesoAdapter
 import com.example.controllaboratorio.Models.Acceso
-
 import com.example.controllaboratorio.R
 import com.google.firebase.firestore.FirebaseFirestore
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ReporteFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ReporteFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
@@ -37,31 +33,65 @@ class ReporteFragment : Fragment() {
         recyclerView = view.findViewById(R.id.HistorialLista)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        // Se obtiene el rol del usuario desde los argumentos
-        val rol = arguments?.getString("rol") ?: "Docente"
-        val docenteId = arguments?.getString("docenteId") ?: ""
+        // Obtiene el ID del docente desde SharedPreferences
+        val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val docenteId = sharedPreferences.getString("userId", "") ?: ""
 
-        // Obtener accesos según el rol
-        obtenerAccesos(rol, docenteId)
+        // Obtiene el rol del usuario desde Firestore
+        obtenerRol(docenteId)
 
         return view
     }
 
-    private fun obtenerAccesos(rol: String, docenteId: String) {
-        // Consulta los accesos dependiendo del rol
+    private fun obtenerRol(docenteId: String) {
+        // Consulta la base de datos de docentes para obtener el rol de este docenteId
+        firestore.collection("usuarios")
+            .document(docenteId)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val rol = document.getString("rol") // Suponiendo que el campo en la base de datos es 'rol'
+
+                    // Si es administrador, obtener todos los accesos, sino solo los del docente
+                    if (rol == "administrador") {
+                        obtenerTodosLosAccesos()
+                    } else {
+                        obtenerNumeroTarjeta(docenteId)
+                    }
+                }
+            }
+            .addOnFailureListener { exception ->
+                // Maneja cualquier error al obtener el rol del usuario
+            }
+    }
+
+    private fun obtenerNumeroTarjeta(docenteId: String) {
+        // Consulta la base de datos de docentes para obtener el numeroTarjeta de este docenteId
+        firestore.collection("usuarios")
+            .document(docenteId)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val numeroTarjeta = document.getLong("NumTarjeta") // Suponiendo que el campo en la base de datos es 'numeroTarjeta'
+
+                    if (numeroTarjeta != null) {
+                        // Una vez obtenemos el numeroTarjeta, hacemos la consulta a accesos
+                        obtenerAccesosPorNumeroTarjeta(numeroTarjeta)
+                    }
+                }
+            }
+            .addOnFailureListener { exception ->
+                // Maneja cualquier error al obtener el docente
+            }
+    }
+
+    private fun obtenerAccesosPorNumeroTarjeta(numeroTarjeta: Long) {
+        // Ahora, consulta la colección de accesos y filtra por numeroTarjeta
         firestore.collection("accesos")
+            .whereEqualTo("numeroTarjeta", numeroTarjeta)
             .get()
             .addOnSuccessListener { result ->
-                listaAccesos = if (rol == "administrador") {
-                    // Si es Administrador, se muestran todos los accesos
-                    result.map { it.toObject(Acceso::class.java) }
-                } else {
-                    // Si es Docente, filtra solo los accesos del docente
-                    result.filter {
-                        val id = it.getString("docenteId")
-                        id == docenteId
-                    }.map { it.toObject(Acceso::class.java) }
-                }
+                listaAccesos = result.map { it.toObject(Acceso::class.java) }
 
                 // Configura el Adapter para mostrar los datos en el RecyclerView
                 accesoAdapter = AccesoAdapter(listaAccesos) { acceso ->
@@ -69,16 +99,34 @@ class ReporteFragment : Fragment() {
                 }
                 recyclerView.adapter = accesoAdapter
             }
+            .addOnFailureListener { exception ->
+                // Maneja cualquier error al obtener los accesos
+            }
+    }
+
+    private fun obtenerTodosLosAccesos() {
+        // Consulta todos los accesos si el usuario es administrador
+        firestore.collection("accesos")
+            .get()
+            .addOnSuccessListener { result ->
+                listaAccesos = result.map { it.toObject(Acceso::class.java) }
+
+                // Configura el Adapter para mostrar los datos en el RecyclerView
+                accesoAdapter = AccesoAdapter(listaAccesos) { acceso ->
+                    // Manejar clic en una tarjeta
+                }
+                recyclerView.adapter = accesoAdapter
+            }
+            .addOnFailureListener { exception ->
+                // Maneja cualquier error al obtener los accesos
+            }
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(rol: String, docenteId: String) =
+        fun newInstance() =
             ReporteFragment().apply {
-                arguments = Bundle().apply {
-                    putString("rol", rol)
-                    putString("docenteId", docenteId)
-                }
+                // Puedes agregar argumentos si es necesario
             }
     }
 }

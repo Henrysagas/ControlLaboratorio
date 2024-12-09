@@ -15,12 +15,12 @@ class AccesoAdapter(
 
     // ViewHolder que contiene las vistas para cada elemento
     class AccesoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val docenteCursoTextView: TextView = itemView.findViewById(R.id.CursoA)
+        val docenteCursoTextView: TextView = itemView.findViewById(R.id.DocenteCurso)
         val laboratorioTextView: TextView = itemView.findViewById(R.id.LAB)
         val fechaTextView: TextView = itemView.findViewById(R.id.FECHA)
         val horaEntradaTextView: TextView = itemView.findViewById(R.id.HORAENTRADA)
         val horaSalidaTextView: TextView = itemView.findViewById(R.id.HoraSalida)
-        val estadoTextView: TextView = itemView.findViewById(R.id.DiaA)
+        val estadoTextView: TextView = itemView.findViewById(R.id.Estado)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccesoViewHolder {
@@ -38,13 +38,26 @@ class AccesoAdapter(
             "${acceso.nombreDocente} - ${acceso.curso}"  // Docente y Curso
         holder.laboratorioTextView.text = acceso.laboratorio?.nombreLab ?: "Sin asignar"  // Nombre del laboratorio
         holder.fechaTextView.text = acceso.fecha ?: "Sin fecha"  // Fecha
-        holder.horaEntradaTextView.text = acceso.horaEntrada ?: "Sin hora de entrada"  // Hora de entrada
-        holder.horaSalidaTextView.text = acceso.horaSalidaReal ?: "Sin hora de salida"  // Hora de salida
-        holder.estadoTextView.text = acceso.cerrado ?: "Estado desconocido"  // Estado de acceso
+
+        // Hora de entrada: asignada y real
+        holder.horaEntradaTextView.text =
+            "Asignada: ${acceso.horaEntrada ?: "N/A"}\nReal: ${acceso.horaGlobalLima ?: "N/A"}"
+
+        // Hora de salida: asignada y real
+        holder.horaSalidaTextView.text =
+            "Asignada: ${acceso.horaSalida ?: "N/A"}\nReal: ${acceso.horaSalidaReal ?: "N/A"}"
+
+        // Estado: Abierto o Cerrado
+        holder.estadoTextView.text = if (acceso.cerrado == true) {
+            "Cerrado"
+        } else {
+            "Abierto"
+        }
 
         // Maneja clic en el item
         holder.itemView.setOnClickListener { onItemClick(acceso) }
     }
+
 
     override fun getItemCount(): Int {
         // Devuelve el tamaño de la lista de accesos

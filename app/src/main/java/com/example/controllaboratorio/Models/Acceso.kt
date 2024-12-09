@@ -12,10 +12,11 @@ class Acceso {
     var horaGlobalLima: String? = null
     var horaIngresada: String? = null
     var horaSalidaReal: String? = null
+    var horaSalida: String? = null
     var laboratorio: Laboratorio? = null
     var nombreDocente: String? = null
     var numeroTarjeta: Long? = null
-    var cerrado: String? = null
+    var cerrado: Boolean? = null
 
     constructor() {
         // Dejar vacío o inicializar con valores predeterminados si es necesario
@@ -29,10 +30,11 @@ class Acceso {
         horaGlobalLima: String?,
         horaIngresada: String?,
         horaSalidaReal: String?,
+        horaSalida: String?,
         laboratorio: Laboratorio?,
         nombreDocente: String?,
         numeroTarjeta: Long?,
-        cerrado: String?
+        cerrado: Boolean?
     ) {
         this.curso = curso
         this.fecha = fecha
@@ -41,6 +43,7 @@ class Acceso {
         this.horaGlobalLima = horaGlobalLima
         this.horaIngresada = horaIngresada
         this.horaSalidaReal = horaSalidaReal
+        this.horaSalida = horaSalida
         this.laboratorio = laboratorio
         this.nombreDocente = nombreDocente
         this.numeroTarjeta = numeroTarjeta
