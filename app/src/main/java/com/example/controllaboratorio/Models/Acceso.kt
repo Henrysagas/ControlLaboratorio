@@ -5,27 +5,46 @@ import java.time.LocalTime
 
 class Acceso {
 
-    var asignacion: Asignacion? = null
-    var fecha: LocalDate? = null
-    var horaEntrada: LocalTime? = null
-    var horaSalida: LocalTime? = null
-    var Estado: String? = null
+    var curso: String? = null
+    var fecha: String? = null
+    var grupo: String? = null
+    var horaEntrada: String? = null
+    var horaGlobalLima: String? = null
+    var horaIngresada: String? = null
+    var horaSalidaReal: String? = null
+    var laboratorio: Laboratorio? = null
+    var nombreDocente: String? = null
+    var numeroTarjeta: Long? = null
+    var cerrado: String? = null
 
     constructor() {
         // Dejar vacío o inicializar con valores predeterminados si es necesario
     }
 
     constructor(
-        asignacion: Asignacion?,
-        fecha: LocalDate?,
-        horaEntrada: LocalTime?,
-        horaSalida: LocalTime?,
-        Estado: String
+        curso: String?,
+        fecha: String?,
+        grupo: String?,
+        horaEntrada: String?,
+        horaGlobalLima: String?,
+        horaIngresada: String?,
+        horaSalidaReal: String?,
+        laboratorio: Laboratorio?,
+        nombreDocente: String?,
+        numeroTarjeta: Long?,
+        cerrado: String?
     ) {
-        this.asignacion = asignacion
+        this.curso = curso
         this.fecha = fecha
+        this.grupo = grupo
         this.horaEntrada = horaEntrada
-        this.horaSalida = horaSalida
-        this.Estado = Estado
+        this.horaGlobalLima = horaGlobalLima
+        this.horaIngresada = horaIngresada
+        this.horaSalidaReal = horaSalidaReal
+        this.laboratorio = laboratorio
+        this.nombreDocente = nombreDocente
+        this.numeroTarjeta = numeroTarjeta
+        this.cerrado = cerrado
     }
+
 }

@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/checkin_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.CheckinFragment"
@@ -91,6 +92,18 @@
                     android:textSize="14sp"
                     app:layout_constraintTop_toBottomOf="@id/horarioCard"/>
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/CerrarSalonButton"
+                    style="@style/CustomButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="Cerrar Salón"
+                    android:textSize="14sp"
+                    app:layout_constraintTop_toBottomOf="@id/TarjetaButton"
+                    tools:layout_editor_absoluteX="22dp" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -112,5 +125,5 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
 
+</FrameLayout>

@@ -8,18 +8,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.controllaboratorio.Models.Acceso
 import com.example.controllaboratorio.R
 
-class AccesoAdapter (private val listaAccesos: List<Acceso>,
-                     private val onItemClick: (Acceso) -> Unit
+class AccesoAdapter(
+    private val listaAccesos: List<Acceso>,
+    private val onItemClick: (Acceso) -> Unit
 ) : RecyclerView.Adapter<AccesoAdapter.AccesoViewHolder>() {
 
     // ViewHolder que contiene las vistas para cada elemento
     class AccesoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val asignacionDocenteCurso: TextView = itemView.findViewById(R.id.CursoA)
-        val asignacionLaboratorio: TextView = itemView.findViewById(R.id.LAB)
-        val fecha: TextView = itemView.findViewById(R.id.FECHA)
-        val horaEntrada: TextView = itemView.findViewById(R.id.HORAENTRADA)
-        val horaSalida: TextView = itemView.findViewById(R.id.HoraSalida)
-        val estado: TextView = itemView.findViewById(R.id.DiaA)
+        val docenteCursoTextView: TextView = itemView.findViewById(R.id.CursoA)
+        val laboratorioTextView: TextView = itemView.findViewById(R.id.LAB)
+        val fechaTextView: TextView = itemView.findViewById(R.id.FECHA)
+        val horaEntradaTextView: TextView = itemView.findViewById(R.id.HORAENTRADA)
+        val horaSalidaTextView: TextView = itemView.findViewById(R.id.HoraSalida)
+        val estadoTextView: TextView = itemView.findViewById(R.id.DiaA)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccesoViewHolder {
@@ -29,24 +30,24 @@ class AccesoAdapter (private val listaAccesos: List<Acceso>,
     }
 
     override fun onBindViewHolder(holder: AccesoViewHolder, position: Int) {
-        // Vincula los datos con las vistas
+        // Obtén el objeto Acceso correspondiente
         val acceso = listaAccesos[position]
 
-        holder.asignacionDocenteCurso.text =
-            (acceso.asignacion?.Docente?.Nombre + " - " + acceso.asignacion?.Curso?.nombreCurso)
-                ?: "Sin asignar"
-        holder.asignacionLaboratorio.text = acceso.asignacion?.Laboratorio?.nombreLab ?: "Sin asignar"
-        holder.fecha.text = acceso.fecha?.toString() ?: "Sin fecha"
-        holder.horaEntrada.text = acceso.horaEntrada?.toString() ?: " "
-        holder.horaSalida.text = acceso.horaSalida?.toString() ?: " "
-        holder.estado.text = acceso.Estado ?: "Sin estado"
+        // Asigna los valores de las propiedades del modelo `Acceso` a los TextViews
+        holder.docenteCursoTextView.text =
+            "${acceso.nombreDocente} - ${acceso.curso}"  // Docente y Curso
+        holder.laboratorioTextView.text = acceso.laboratorio?.nombreLab ?: "Sin asignar"  // Nombre del laboratorio
+        holder.fechaTextView.text = acceso.fecha ?: "Sin fecha"  // Fecha
+        holder.horaEntradaTextView.text = acceso.horaEntrada ?: "Sin hora de entrada"  // Hora de entrada
+        holder.horaSalidaTextView.text = acceso.horaSalidaReal ?: "Sin hora de salida"  // Hora de salida
+        holder.estadoTextView.text = acceso.cerrado ?: "Estado desconocido"  // Estado de acceso
 
-        // Maneja clics en el elemento
+        // Maneja clic en el item
         holder.itemView.setOnClickListener { onItemClick(acceso) }
     }
 
     override fun getItemCount(): Int {
-        // Devuelve el tamaño de la lista
+        // Devuelve el tamaño de la lista de accesos
         return listaAccesos.size
     }
 }
