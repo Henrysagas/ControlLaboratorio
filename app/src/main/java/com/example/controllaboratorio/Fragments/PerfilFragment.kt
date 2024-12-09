@@ -60,7 +60,7 @@ class PerfilFragment : Fragment() {
                     val nombre = document.getString("nombre")
                     val correo = document.getString("correo")
                     val rol = document.getString("rol")
-                    val numTarjeta = document.getLong("Numtarjeta")
+                    val numTarjeta = document.getLong("NumTarjeta")
                     val usuario = Usuario(nombre, correo, rol, numTarjeta)
                     // Mostrar los datos en las vistas
                     nombreTextView.text = "Nombre: ${usuario.Nombre ?: "No disponible"}"
